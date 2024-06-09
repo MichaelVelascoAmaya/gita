@@ -3,9 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "start": "ng serve -c local",
+    "start:staging": "ng serve -c staging",
+    "start:production": "ng serve -c production",
+    "build": "ng build -c local",
+    "build:staging": "ng build -c staging",
+    "build:production": "ng build -c production",
+    "deploy:staging": "npm run build:staging && npx firebase deploy --only storage,firestore,hosting:gita-dev-project-staging",
+    "deploy:production": "npm run build:production && npx firebase deploy --only storage,firestore,hosting:gita-dev-project",
+    "watch": "ng build --watch --c staging",
     "test": "ng test"
   },
   "private": true,

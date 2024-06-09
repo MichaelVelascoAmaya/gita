@@ -10,6 +10,21 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {},
+          "configurations": {
+            "staging": {
+              "buildTarget": "gita:build:staging",
+              "firebaseProject": "gita-dev-project-staging"
+            },
+            "production": {
+              "buildTarget": "gita:build:production",
+              "firebaseProject": "gita-dev-project"
+            }
+          },
+          "defaultConfiguration": "staging"
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
@@ -33,6 +48,7 @@
           },
           "configurations": {
             "production": {
+              "outputPath": "./dist/production",
               "budgets": [
                 {
                   "type": "initial",
@@ -53,18 +69,33 @@
                 }
               ]
             },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
+            "staging": {
+              "optimization": true,
+              "extractLicenses": true,
               "sourceMap": true,
+              "outputPath": "./dist/staging",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
+                  "with": "src/environments/environment.staging.ts"
                 }
               ]
             },
             "local": {
+              "outputPath": "./dist/local",
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
@@ -78,8 +109,8 @@
             "production": {
               "buildTarget": "gita:build:production"
             },
-            "development": {
-              "buildTarget": "gita:build:development"
+            "staging": {
+              "buildTarget": "gita:build:staging"
             },
             "local": {
               "buildTarget": "gita:build:local"

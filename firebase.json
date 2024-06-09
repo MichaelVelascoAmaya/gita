@@ -1,1 +1,35 @@
-{}
+{
+  "firestore": {
+    "rules": "./firebase/firestore.rules",
+    "indexes": "./firebase/firestore.indexes.json"
+  },
+  "hosting": [
+    {
+      "target": "gita-dev-project",
+      "public": "./dist/production/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "frameworksBackend": {
+        "region": "us-central1"
+      }
+    },
+    {
+      "target": "gita-dev-project-staging",
+      "public": "./dist/staging/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "frameworksBackend": {
+        "region": "us-central1"
+      }
+    }
+  ],
+  "storage": {
+    "rules": "./firebase/storage.rules"
+  }
+}

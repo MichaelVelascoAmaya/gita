@@ -1,0 +1,19 @@
+{
+  "projects": {
+    "default": "gita-dev-project"
+  },
+  "targets": {
+    "gita-dev-project": {
+      "hosting": {
+        "gita-dev-project-staging": [
+          "gita-dev-project-staging"
+        ],
+        "gita-dev-project": [
+          "gita-dev-project"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
